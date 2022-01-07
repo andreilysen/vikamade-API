@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", async (_req, res, next) => {
   try {
     await axios
       .get("https://my.prom.ua/api/v1/groups/list", {
@@ -14,7 +14,9 @@ router.get("/", async (req, res) => {
       .then((response) => {
         res.json(response.data);
       });
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
