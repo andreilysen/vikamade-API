@@ -1,11 +1,14 @@
 const axios = require("axios");
 require("dotenv").config();
 
+const token = process.env.PROM_TOKEN;
+const limit = process.env.LIMIT;
+
 const getCategory = async (_req, res, next) => {
   try {
     await axios
-      .get("https://my.prom.ua/api/v1/groups/list?limit=10000", {
-        headers: { Authorization: `Bearer ${process.env.PROM_TOKEN}` },
+      .get(`https://my.prom.ua/api/v1/groups/list?limit=${limit}`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         res.json(response.data);
@@ -19,7 +22,7 @@ const getList = async (req, res, next) => {
   try {
     await axios
       .get(
-        `https://my.prom.ua/api/v1/products/list?limit=10000&group_id=${req.query.id}`,
+        `https://my.prom.ua/api/v1/products/list?limit=${limit}&group_id=${req.query.id}`,
         {
           headers: { Authorization: `Bearer ${process.env.PROM_TOKEN}` },
         }
