@@ -7,7 +7,7 @@ const limit = process.env.LIMIT;
 const getCategory = async (_req, res, next) => {
   try {
     await axios
-      .get(`https://my.prom.ua/api/v1/groups/list?limit=${limit}`, {
+      .get(`https://my.prom.ua/api/v1/groups/list?limit=100`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
