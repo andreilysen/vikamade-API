@@ -12,7 +12,6 @@ const getCategory = async (_req, res, next) => {
       })
       .then((response) => {
         res.json(response.data);
-        console.log(response.data);
       });
   } catch (error) {
     next(error);
